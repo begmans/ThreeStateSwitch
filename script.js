@@ -1,4 +1,8 @@
 function ThreeStateSwitch(options) {
+	var LEFT = "left";
+	var CENTER = "center";
+	var RIGHT = "right";
+
 	var _defaultSettings = {
 		states: {
 			left: {
@@ -24,18 +28,18 @@ function ThreeStateSwitch(options) {
 	};
 	
 	this.settings = _defaultSettings; // to override with options
+	this.element = document.getElementById("container");
+	var $knob = this.element.getElementsByClassName("real-knob")[0];
+	var $rail = this.element.getElementsByClassName("rail")[0];
+	var $state = this.element.getElementsByClassName("state")[0];
+	var $legendState = this.element.getElementsByClassName("legend-state")[0];
 
-	var $knob = document.getElementById("knob");
-	var $container = document.getElementById("container");
-	var $state = document.getElementById("state");
-	var $legend = document.getElementById("legend");
-
-	var containerBoundingRect = $container.getBoundingClientRect();
-	var containerX = containerBoundingRect.left;
-	var low = containerX;
-	var high = containerX + containerBoundingRect.width;
-	var firstThirdX = containerX + Math.ceil(containerBoundingRect.width / 3);
-	var secondThirdX = containerX + Math.ceil(containerBoundingRect.width * 2 / 3);
+	var railBoundingRect = $rail.getBoundingClientRect();
+	var railX = railBoundingRect.left;
+	var low = railX;
+	var high = railX + railBoundingRect.width;
+	var firstThirdX = railX + Math.ceil(railBoundingRect.width / 3);
+	var secondThirdX = railX + Math.ceil(railBoundingRect.width * 2 / 3);
 	var currentStatus = this.settings.states.center;
 	var self = this;
 	
@@ -45,8 +49,8 @@ function ThreeStateSwitch(options) {
 		var cssClass = stateClasses[stateKey];
 		polyfill.changeClass($knob, cssClass);
 		$state.value = neoState.value;
+		$legendState.innerText = neoState.label;
 		currentStatus = neoState;
-		$legend.innerText = neoState.label;
 	};
 	
 	// Events
@@ -76,27 +80,27 @@ function ThreeStateSwitch(options) {
 		e.preventDefault();
 		if (e.clientX >= low && e.clientX < high) {
 			if (e.clientX < firstThirdX && currentStatus !== states.left) {
-				self.changeState("left");
+				self.changeState(LEFT);
 			} else if (e.clientX >= firstThirdX &&
 				e.clientX < secondThirdX &&
 				currentStatus !== states.center) {
-				self.changeState("center");
+				self.changeState(CENTER);
 			} else if (e.clientX >= secondThirdX && currentStatus !== states.right) {
-				self.changeState("right");
+				self.changeState(RIGHT);
 			}
 		}
 	}
 
-	$container.addEventListener('dragover', dragoverHandler);
+	$rail.addEventListener('dragover', dragoverHandler);
 
 	// Drop
 	function dropHandler(e) {
 		e.preventDefault();
 		$knob.title = currentStatus.label;
-		document.getElementById("legend").innerText = currentStatus.label;
+		$legendState.innerText = currentStatus.label;
 	}
 
-	$container.addEventListener('drop', dropHandler);
+	$rail.addEventListener('drop', dropHandler);
 
 	// Click
 	function clickOnSwitch(e) {
@@ -111,7 +115,7 @@ function ThreeStateSwitch(options) {
 		}
 	};
 
-	$container.addEventListener('click', clickOnSwitch);
+	$rail.addEventListener('click', clickOnSwitch);
 
 	// ghosts
 	var $ghosts = document.querySelectorAll(".ghost");
@@ -119,11 +123,11 @@ function ThreeStateSwitch(options) {
 	for (var i = 0; i < $ghosts.length; i++) {
 		(function(target) {
 			target.addEventListener("mouseenter", function(e) {
-				polyfill.addClass(target, "hey");
+				polyfill.addClass(target, "ghost-highlight");
 			});
 
 			target.addEventListener("mouseleave", function(e) {
-				polyfill.removeClass(target, "hey");
+				polyfill.removeClass(target, "ghost-highlight");
 			});
 		})($ghosts[i]);
 	}

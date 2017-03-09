@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 
-<!--[if lte IE 9]>
-<html lang="en" class="oldie">
-<![endif]-->
-<!--[if gt IE 9]><!-->
 <html lang="en">
-<!--<![endif]-->
 
 <head>
 
@@ -15,21 +10,20 @@
 
   <link rel="stylesheet" media="screen" href="./style.css" />
 
-
 </head>
 
 <body>
-
-	<p>visibilité Secnet : <span id="legend">aub</span></p>
-	<div id="container">
-		<div id="knob" class="knob aub" draggable="true"></div>
-		<div class="ghost knob a" title="a"></div>
-		<div class="ghost knob aub" title="aub"></div>
-		<div class="ghost knob b" title="b"></div>
+	<div id="container">	
+		<div class="legend">visibilité Secnet : <span class="legend-state">aub</span></div>
+		<div class="rail">
+			<div class="knob real-knob aub" draggable="true"></div>
+			<div class="ghost knob a" title="a"></div>
+			<div class="ghost knob aub" title="aub"></div>
+			<div class="ghost knob b" title="b"></div>
+		</div>
+		<input class="state" type="hidden" name="state" value="aub"/>
 	</div>
-	<input id="state" type="hidden" name="state" value="aub"/>
 	<script type="text/javascript" src="script.js"></script>
-
 </body>
 
 </html>
