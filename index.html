@@ -1,11 +1,38 @@
-<p>visibilité Secnet : <span id="legend">aub</span></p>
-<div id="container">
-	<div id="knob" class="aub" draggable="true">
-		<div id="left"></div>
-		<div id="right"></div>
+<!DOCTYPE html>
+
+<!--[if lte IE 9]>
+<html lang="en" class="oldie">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>CodePen - ThreeStateSwitch</title>
+
+  <link rel="stylesheet" media="screen" href="./style.css" />
+
+
+</head>
+
+<body>
+
+	<p>visibilité Secnet : <span id="legend">aub</span></p>
+	<div id="container">
+		<div id="knob" class="aub" draggable="true">
+			<div id="left"></div>
+			<div id="right"></div>
+		</div>
+		<div id="ghostLeft" class="ghost " title="a"></div>
+		<div id="ghostCenter" class="ghost" title="aub"></div>
+		<div id="ghostRight" class="ghost" title="b"></div>
 	</div>
-	<div id="ghostLeft" class="ghost " title="a"></div>
-	<div id="ghostCenter" class="ghost" title="aub"></div>
-	<div id="ghostRight" class="ghost" title="b"></div>
-</div>
-<input id="state" type="hidden" name="state" value="aub"/>
+	<input id="state" type="hidden" name="state" value="aub"/>
+	<script type="text/javascript" src="script.js"></script>
+
+</body>
+
+</html>
