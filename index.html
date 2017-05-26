@@ -6,24 +6,23 @@
 
   <meta charset="utf-8">
 
-  <title>CodePen - ThreeStateSwitch</title>
+  <title>TriSwitch</title>
 
-  <link rel="stylesheet" media="screen" href="./style.css" />
-
+  <link rel="stylesheet" media="screen" href="./lib/triswitch.css" />
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="lib/triswitch.js"></script>
+  <script type="text/javascript" src="demo.js"></script>
 </head>
 
 <body>
-	<div id="container">	
-		<div class="legend">visibilité Secnet : <span class="legend-state">aub</span></div>
-		<div class="rail">
-			<div class="knob real-knob aub" draggable="true"></div>
-			<div class="ghost knob a" title="a"></div>
-			<div class="ghost knob aub" title="aub"></div>
-			<div class="ghost knob b" title="b"></div>
-		</div>
-		<input class="state" type="hidden" name="state" value="aub"/>
-	</div>
-	<script type="text/javascript" src="script.js"></script>
+	<div id="demoContainer"/>
 </body>
 
 </html>
